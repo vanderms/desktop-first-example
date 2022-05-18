@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+/*Primeiro algumas regras gerais que eu costumo usar*/
+*, *::before, *::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;  
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+/*A partir daqui vamos criar a versão desktop propriamente dita do website */
+
+.r_section, .r_header {
+  border: 2px solid black;
+}
+
+.r_header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+  padding-top: 80px;
+}
+
+.r_header .navlink-list{  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.r_section {
+  margin-left: 400px;
+  width: calc(100vw - 480px);
+  padding: 40px;
+  margin-top: 60px;
+  border-radius: 8px;
+}
+
+.r_section:first-of-type{
+  margin-top: 20px;
+}
+
+.r_sobre .text{
+  margin-top: 32px;
+}
+
+.r_card-container{
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;  
+}
+
+.r_card-container li{
+  display: contents;
+}
+
+.r_card-container .card{
+  width: 100%;
+  height: 200px;
+  border: 1px solid grey;
+  display: grid;
+  place-content: center;
+}
+
+.r_contato {
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+/*Aqui termina o css da versão desktop do site, 
+agora vamos criar uma media queries para adaptar a versão tablet
+Observe que é alterado apenas os atributos que precisam ser alterados, por exemplo, o header que antes
+estava fixado na parte lateral, agora precisa ser fixado na parte superior, por isso, o atributo position é 
+alterado de fixed para static.
+A borda das seções por outro lado é idêntica tanto na versão mobile, tablet ou desktop, por isso, ela não é
+alterada nas medias queries
+*/
+
+@media screen and (max-width: 992px){  
+  
+  .r_header {
+    position: static;
+    height: auto;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 32px 64px;
+    align-items: flex-start;    
+  }
+
+  .r_header .navlink-list{  
+    gap: 16px;
+  }
+
+  .r_section{
+    width: 88%;
+    margin-inline: auto;
+  }
+
+  .r_section:first-of-type{
+    margin-top: 80px;
+  }
+}
+
+/*Aqui termina a versão tablet. Agora precisamos criar uma media query para a versão mobile 
+e as únicas modificações necessárias são
+* alterar o número de cartões de habilidade e portfólio de 3 para 1 por coluna;
+* diminuir a fonte do texto "DEVELOPER" e o padding do header para caber todo o conteúdo;
+*/
+
+@media screen and (max-width: 668px){
+
+  .r_header{
+    padding: 24px;
+  }
+
+  .r_header .title{
+    font-size: 24px;
+  }
+
+  .r_card-container {   
+    grid-template-columns: 1fr;     
+  }
+}
